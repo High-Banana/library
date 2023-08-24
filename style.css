@@ -53,3 +53,7 @@ form{
     margin: auto;
     text-align: center;
 }
+
+tr:nth-child(even){
+    background-color: rgb(224, 224, 224);
+}
