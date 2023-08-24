@@ -1,54 +1,70 @@
 const myLibrary = [];
+const addNewBookButton = document.querySelector(".add-book-button");
+const closeFormButton = document.querySelector(".close-form-button");
+const fieldSet = document.querySelector("fieldset");
+const buttonSection = document.querySelector(".button-section");
+const bookTitleElement = document.getElementById("book_name");
+const authorNameElement = document.getElementById("author_name");
+const pageElement = document.getElementById("pages");
+const bookStatusElement = document.getElementsByName("status");
 const tableContainer = document.querySelector(".table-container");
-const bookTitle = document.getElementById("book_name");
-const authorName = document.getElementById("author_name");
-const totalPage = document.getElementById("pages");
-const radioButton = document.getElementsByName("status");
 const submitButton = document.querySelector(".submit-button");
+let bookTitle;
+let authorName;
+let NumOfPage;
 let bookStatus;
-let header = ["Name", "Author", "Page", "Status"];
+const header = ["Name", "Author", "No. of pages", "Status"];
 
-function Book(author, title, pages, status) {
-    this.author = author,
-        this.title = title,
-        this.pages = pages,
-        this.status = status
-}
-
-function getRadioButtonValue() {
-    for (let i = 0; i < radioButton.length; i++) {
-        if (radioButton[i].checked) {
-            bookStatus = radioButton[i].value;
-        }
-    }
+function Book(title, author, pages, status) {
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.status = status
 }
 
 function addBookToLibrary() {
     submitButton.addEventListener("click", (event) => {
-        getRadioButtonValue();
         event.preventDefault();
-        const book = new Book(authorName.value, bookTitle.value, totalPage.value, bookStatus);
-        myLibrary.push(book);
-        createTable();
+        getBook();
+        const book = new Book(bookTitle, authorName, NumOfPage, bookStatus);
+        myLibrary.unshift(book);
+        displayBook();
     })
 }
 addBookToLibrary();
 
-function createTable() {
+function getBook() {
+    bookTitle = bookTitleElement.value;
+    authorName = authorNameElement.value;
+    NumOfPage = pageElement.value;
+}
+
+function getRadioButtonValue() {
+    for (let i = 0; i < bookStatusElement.length; i++) {
+        if (bookStatusElement[i].checked) {
+            bookStatus = bookStatusElement[i].value;
+        }
+    }
+}
+
+function displayBook() {
     tableContainer.textContent = "";
     const table = document.createElement("table");
-    const headerRow = document.createElement("tr");
-    header.forEach((element)=>{
-        const tableHeader = document.createElement("th");
-        const headerValue = document.createTextNode(element);
-        tableHeader.appendChild(headerValue);
-        headerRow.appendChild(tableHeader);
-    })
-    table.appendChild(headerRow);
+    const tableRow = document.createElement("tr");
 
-    myLibrary.forEach((element)=>{
-        let dataRow = document.createElement("tr");
-        Object.values(element).forEach((data)=>{
+    // Make table row and table header
+    header.forEach((element) => {
+        const tableHead = document.createElement("th");
+        const headerValue = document.createTextNode(element);
+        tableHead.appendChild(headerValue);
+        tableRow.appendChild(tableHead);
+    })
+    table.appendChild(tableRow);
+
+    // Make table row and table data
+    myLibrary.forEach((element) => {
+        const dataRow = document.createElement("tr");
+        Object.values(element).forEach((data) => {
             const tableData = document.createElement("td");
             const dataValue = document.createTextNode(data);
             tableData.appendChild(dataValue);
@@ -56,6 +72,21 @@ function createTable() {
         })
         table.appendChild(dataRow);
     })
-
     tableContainer.appendChild(table);
 }
+
+function displayForm() {
+    fieldSet.style.display = "block";
+    closeFormButton.style.display = "block";
+    addNewBookButton.style.display = "none";
+}
+
+function hideForm() {
+    fieldSet.style.display = "none";
+    closeFormButton.style.display = "none";
+    addNewBookButton.style.display = "block";
+}
+
+window.addEventListener("load", hideForm);
+addNewBookButton.addEventListener("click", displayForm);
+closeFormButton.addEventListener("click", hideForm);
