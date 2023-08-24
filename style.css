@@ -18,6 +18,12 @@ table tr th, td{
     padding: 1rem;
 }
 
+.lastCol{
+    display: flex;
+    gap: 5px;
+    border: 1px solid black;
+}
+
 fieldset{
     width: 50%;
     margin: auto;
