@@ -11,6 +11,10 @@
 
 <body>
     <main>
+        <div class="button-section">
+            <button class="add-book-button">Add new book</button>
+            <button class="close-form-button">Close form</button>
+        </div>
         <fieldset>
             <legend>Enter book's details</legend>
             <form>
@@ -27,10 +31,10 @@
                     <input type="number" id="pages" placeholder="Total no. of pages">
                 </div>
                 <div class="form-input">
-                    <label>Have you read the book?</label>
+                    <label>Book status</label>
                     <div class="radio-buttons">
-                        <input type="radio" value="yes" name="status">Yes
-                        <input type="radio" value="no" name="status">No
+                        <input type="radio" value="yes" name="status">Read
+                        <input type="radio" value="no" name="status">Not read yet
                         <input type="radio" value="still-reading" name="status">Still reading
                     </div>
                 </div>
@@ -38,7 +42,7 @@
             </form>
         </fieldset>
         <table class="table-container">
-            <h1>Library</h1>
+            <!-- <h1>Library</h1> -->
         </table>
     </main>
 </body>
