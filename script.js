@@ -32,6 +32,7 @@ function addBookToLibrary() {
         // if(bookTitle === "" || authorName === "" || NumOfPage === "" || bookStatus === "") return;
         const book = new Book(bookTitle, authorName, NumOfPage, bookStatus, libraryAction);
         myLibrary.unshift(book);
+        console.log(myLibrary);
         displayBook();
     })
 }
@@ -117,7 +118,14 @@ function addButtonInsideCell() {
 
 function removeData(event) {
     if (event.target.value = "removeButton") {
-        event.target.closest("tr").remove();
+        let row = this.closest("tr");
+        console.log(row.rowIndex);
+        
+        // Subtracted by 1 to make array's index match with row.index
+        myLibrary.splice(row.rowIndex - 1, 1); 
+        console.log(row.rowIndex);
+        console.log(myLibrary);
+        row.remove();
     }
 }
 
