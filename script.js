@@ -33,7 +33,6 @@ function addBookToLibrary() {
         const book = new Book(bookTitle, authorName, NumOfPage, bookStatus, libraryAction);
         myLibrary.unshift(book);
         displayBook();
-        addButtonInsideCell();
     })
 }
 addBookToLibrary();
@@ -79,6 +78,8 @@ function displayBook() {
         table.appendChild(dataRow);
     })
     tableContainer.appendChild(table);
+    addButtonInsideCell();
+    manageLibrary();
 }
 
 function displayForm() {
@@ -96,14 +97,37 @@ function hideForm() {
 function addButtonInsideCell() {
     const table = document.querySelector(".custom-table");
     let rows = table.rows;
-    for(let i = 1; i < rows.length; i++){
+    for (let i = 1; i < rows.length; i++) {
         let cols = rows[i].cells;
-        let lastCol = rows[i].cells[cols.length-1];
-        let button = document.createElement("button");
-        button.textContent = "Remove";
-        lastCol.appendChild(button);
+        let lastCol = rows[i].cells[cols.length - 1];
+
+        let removeButton = document.createElement("button");
+        removeButton.classList.add("removeButton");
+
+        let editButton = document.createElement("button");
+        editButton.classList.add("editButton");
+
+        removeButton.textContent = "Remove";
+        editButton.textContent = "Edit Status";
+        lastCol.classList.add("lastCol");
+        lastCol.appendChild(editButton);
+        lastCol.appendChild(removeButton);
     }
 }
+
+function removeData(event) {
+    if (event.target.value = "removeButton") {
+        event.target.closest("tr").remove();
+    }
+}
+
+function manageLibrary() {
+    const removeButton = document.querySelectorAll(".removeButton");
+    removeButton.forEach((button) => {
+        button.addEventListener("click", removeData);
+    })
+}
+
 window.addEventListener("load", hideForm);
 addNewBookButton.addEventListener("click", displayForm);
 closeFormButton.addEventListener("click", hideForm);
