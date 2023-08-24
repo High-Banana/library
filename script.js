@@ -119,13 +119,33 @@ function addButtonInsideCell() {
 function removeData(event) {
     if (event.target.value = "removeButton") {
         let row = this.closest("tr");
-        console.log(row.rowIndex);
-        
+
         // Subtracted by 1 to make array's index match with row.index
         myLibrary.splice(row.rowIndex - 1, 1); 
-        console.log(row.rowIndex);
-        console.log(myLibrary);
         row.remove();
+    }
+}
+
+function editStatus(event){
+    const newInput = document.createElement("select");
+
+    // Create select input with options
+    const inputOptions = ["Select one", "Read", "Not read yet", "Still reading"];
+    for(let i = 0; i < inputOptions.length; i++){
+        const option = document.createElement("option");
+        option.value = inputOptions[i];
+        option.text = inputOptions[i];
+        newInput.appendChild(option);
+    }
+
+    // Edit the value of the cell
+    if(event.target.value = "Edit Status"){
+        let cell = this.closest("tr").cells[3];
+        cell.textContent = "";
+        cell.appendChild(newInput);
+        newInput.addEventListener("change", (event)=>{
+            cell.textContent = event.target.value;
+        })
     }
 }
 
@@ -133,6 +153,11 @@ function manageLibrary() {
     const removeButton = document.querySelectorAll(".removeButton");
     removeButton.forEach((button) => {
         button.addEventListener("click", removeData);
+    })
+
+    const editButton = document.querySelectorAll(".editButton");
+    editButton.forEach((button)=>{
+        button.addEventListener("click", editStatus);
     })
 }
 
