@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,36 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <main>
-        <table>
+        <fieldset>
+            <legend>Enter book's details</legend>
+            <form>
+                <div class="form-input">
+                    <label for="book_name">Book's name</label>
+                    <input type="text" id="book_name">
+                </div>
+                <div class="form-input">
+                    <label for="author_name">Author's name</label>
+                    <input type="text" id="author_name">
+                </div>
+                <div class="form-input">
+                    <label for="pages">Number of pages</label>
+                    <input type="number" id="pages" placeholder="Total no. of pages">
+                </div>
+                <div class="form-input">
+                    <label>Have you read the book?</label>
+                    <div class="radio-buttons">
+                        <input type="radio" id="yes" name="status">Yes
+                        <input type="radio" id="no" name="status">No
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+        <table class="table-container">
             <h1>Library</h1>
-            <tr>
+            <!-- <tr>
                 <th>Name</th>
                 <th>Author</th>
                 <th>Pages</th>
@@ -22,8 +48,9 @@
                 <td>Author name</td>
                 <td>Pages in book</td>
                 <td>Have you read the book</td>
-            </tr>
+            </tr> -->
         </table>
     </main>
 </body>
+
 </html>
