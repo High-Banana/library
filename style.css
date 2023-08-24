@@ -30,3 +30,7 @@ form{
     align-items: start;
     gap: 0.3rem;
 }
+
+.submit-button{
+    width: 30%;
+}
