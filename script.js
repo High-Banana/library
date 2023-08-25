@@ -29,7 +29,10 @@ function addBookToLibrary() {
         event.preventDefault();
         getBook();
         getRadioButtonValue();
-        if(bookTitle === "" || authorName === "" || NumOfPage === "" || bookStatus === "") return;
+        if(bookTitle === "" || authorName === "" || NumOfPage === "" || bookStatus === ""){
+            alert("Please fill all the inputs");
+            return;
+        };
         const book = new Book(bookTitle, authorName, NumOfPage, bookStatus, libraryAction);
         myLibrary.unshift(book);
         console.log(myLibrary);
