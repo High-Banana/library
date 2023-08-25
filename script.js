@@ -29,7 +29,7 @@ function addBookToLibrary() {
         event.preventDefault();
         getBook();
         getRadioButtonValue();
-        // if(bookTitle === "" || authorName === "" || NumOfPage === "" || bookStatus === "") return;
+        if(bookTitle === "" || authorName === "" || NumOfPage === "" || bookStatus === "") return;
         const book = new Book(bookTitle, authorName, NumOfPage, bookStatus, libraryAction);
         myLibrary.unshift(book);
         console.log(myLibrary);
@@ -121,17 +121,17 @@ function removeData(event) {
         let row = this.closest("tr");
 
         // Subtracted by 1 to make array's index match with row.index
-        myLibrary.splice(row.rowIndex - 1, 1); 
+        myLibrary.splice(row.rowIndex - 1, 1);
         row.remove();
     }
 }
 
-function editStatus(event){
+function editStatus(event) {
     const newInput = document.createElement("select");
 
     // Create select input with options
     const inputOptions = ["Select one", "Read", "Not read yet", "Still reading"];
-    for(let i = 0; i < inputOptions.length; i++){
+    for (let i = 0; i < inputOptions.length; i++) {
         const option = document.createElement("option");
         option.value = inputOptions[i];
         option.text = inputOptions[i];
@@ -139,12 +139,16 @@ function editStatus(event){
     }
 
     // Edit the value of the cell
-    if(event.target.value = "Edit Status"){
+    if (event.target.value = "Edit Status") {
+        let row = this.closest("tr");
         let cell = this.closest("tr").cells[3];
         cell.textContent = "";
         cell.appendChild(newInput);
-        newInput.addEventListener("change", (event)=>{
+        newInput.addEventListener("change", (event) => {
             cell.textContent = event.target.value;
+            console.log(row.rowIndex - 1);
+            myLibrary[row.rowIndex - 1].status = event.target.value;
+            console.log(myLibrary);
         })
     }
 }
@@ -156,7 +160,7 @@ function manageLibrary() {
     })
 
     const editButton = document.querySelectorAll(".editButton");
-    editButton.forEach((button)=>{
+    editButton.forEach((button) => {
         button.addEventListener("click", editStatus);
     })
 }
