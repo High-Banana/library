@@ -1,35 +1,36 @@
-*{
+* {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-main{
+main {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-table{
+table {
     border: 2px solid black;
     border-collapse: collapse;
 }
 
-table tr th, td{
+table tr th,
+td {
     border: 1px solid black;
     padding: 1rem;
 }
 
-.lastCol{
+.lastCol {
     display: flex;
     gap: 5px;
     border: 1px solid black;
 }
 
-fieldset{
+fieldset {
     width: 50%;
     margin: auto;
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -37,7 +38,7 @@ form{
     align-items: center;
 }
 
-.form-input{
+.form-input {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -45,21 +46,21 @@ form{
     gap: 0.3rem;
 }
 
-.submit-button{
+.submit-button {
     width: 30%;
 }
 
-.button-section{
+.button-section {
     display: flex;
     gap: 1rem;
     justify-content: center;
 }
 
-.table-container{
+.table-container {
     margin: auto;
     text-align: center;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: rgb(224, 224, 224);
 }
