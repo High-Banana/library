@@ -35,7 +35,6 @@ function addBookToLibrary() {
         };
         const book = new Book(bookTitle, authorName, NumOfPage, bookStatus, libraryAction);
         myLibrary.unshift(book);
-        console.log(myLibrary);
         displayBook();
     })
 }
@@ -149,9 +148,7 @@ function editStatus(event) {
         cell.appendChild(newInput);
         newInput.addEventListener("change", (event) => {
             cell.textContent = event.target.value;
-            console.log(row.rowIndex - 1);
             myLibrary[row.rowIndex - 1].status = event.target.value;
-            console.log(myLibrary);
         })
     }
 }
