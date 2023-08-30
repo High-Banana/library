@@ -16,12 +16,14 @@ let bookStatus;
 let libraryAction = "";
 const header = ["Name", "Author", "No. of pages", "Status", "Action"];
 
-function Book(title, author, pages, status, libraryAction) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.status = status
-    this.libraryAction = libraryAction
+class Book {
+    constructor(title, author, pages, status, libraryAction) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.status = status
+        this.libraryAction = libraryAction
+    }
 }
 
 function addBookToLibrary() {
@@ -29,7 +31,7 @@ function addBookToLibrary() {
         event.preventDefault();
         getBook();
         getRadioButtonValue();
-        if(bookTitle === "" || authorName === "" || NumOfPage === "" || bookStatus === ""){
+        if (bookTitle === "" || authorName === "" || NumOfPage === "" || bookStatus === "") {
             alert("Please fill all the inputs");
             return;
         };
